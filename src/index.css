@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── Design tokens ─────────
+   Primary #282B4A (deep indigo) + accent #EEEBDA (warm cream). Light is the default theme. */
+:root,
+:root[data-theme="light"] {
+  --bg: 250 249 244;
+  --surface: 255 255 255;
+  --surface-2: 245 243 232;
+  --surface-3: 238 235 218;       /* #EEEBDA */
+  --line: 226 222 203;
+  --ink: 40 43 74;                /* #282B4A */
+  --ink-2: 91 94 122;
+  --ink-3: 110 112 136;
+  --primary: 40 43 74;
+  --primary-fg: 250 249 244;
+  --cream: 238 235 218;
+  --danger: 200 55 55;   --danger-soft: 252 233 231;
+  --warn: 176 104 12;    --warn-soft: 252 240 216;
+  --ok: 30 128 86;       --ok-soft: 224 244 234;
+  --info: 56 88 206;     --info-soft: 228 235 252;
+  --radar: 52 211 153;
+  --shadow: 40 43 74;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: 18 20 42;                 /* deepened #282B4A */
+  --surface: 27 30 58;
+  --surface-2: 34 37 70;
+  --surface-3: 40 43 74;          /* #282B4A */
+  --line: 58 62 104;
+  --ink: 238 235 218;             /* #EEEBDA */
+  --ink-2: 196 194 182;
+  --ink-3: 152 152 168;
+  --primary: 238 235 218;
+  --primary-fg: 40 43 74;
+  --cream: 238 235 218;
+  --danger: 244 128 120; --danger-soft: 72 34 42;
+  --warn: 242 180 84;    --warn-soft: 68 50 26;
+  --ok: 88 208 156;      --ok-soft: 24 60 50;
+  --info: 142 166 252;   --info-soft: 34 44 88;
+  --radar: 74 222 160;
+  --shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  html[data-large-text="true"] { font-size: 18px; }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    margin: 0; min-height: 100dvh; overscroll-behavior-y: none;
+    font-feature-settings: "cv11", "ss01";
+    transition: background-color .25s ease, color .25s ease;
+  }
+  h1, h2, h3 { @apply font-serif tracking-tight; font-weight: 500; }
+  button, [role="button"], a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid rgb(var(--info)); outline-offset: 2px; border-radius: 10px; }
+  ::selection { background: rgb(var(--info) / .25); }
+  input, textarea, select { font-size: 16px; } /* prevents iOS zoom on focus */
+  * { scrollbar-width: thin; scrollbar-color: rgb(var(--line)) transparent; }
+  ::placeholder { color: rgb(var(--ink-3)); }
+}
+
+@layer components {
+  .card { @apply bg-surface border border-line rounded-2xl shadow-soft; }
+  .card-flat { @apply bg-surface border border-line rounded-2xl; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium border border-line bg-surface-2 text-ink-2; }
+  .safe-b { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+  .safe-t { padding-top: max(env(safe-area-inset-top), 0px); }
+  .skeleton { @apply relative overflow-hidden rounded-xl bg-surface-3/70; }
+  .skeleton::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgb(var(--surface) / .55), transparent); animation: shimmer 1.6s infinite; }
+  .page-enter { animation: rise .35s ease-out both; }
+}
+
+/* ───────── Tactical / radar map visuals (operations) ───────── */
+.tac-grid { position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background-image: linear-gradient(rgb(var(--radar) / .07) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--radar) / .07) 1px, transparent 1px);
+  background-size: 64px 64px; mix-blend-mode: screen; }
+.tac-vignette { position: absolute; inset: 0; pointer-events: none; z-index: 2; box-shadow: inset 0 0 120px 20px rgb(4 6 20 / .55); }
+.tac-sweep { position: absolute; left: 50%; top: 50%; width: 140vmax; height: 140vmax; margin: -70vmax 0 0 -70vmax; pointer-events: none; z-index: 1;
+  background: conic-gradient(from 0deg, rgb(var(--radar) / .0) 0deg, rgb(var(--radar) / .0) 300deg, rgb(var(--radar) / .10) 345deg, rgb(var(--radar) / .22) 360deg);
+  animation: sweep 7s linear infinite; mix-blend-mode: screen; }
+.sig { position: relative; width: 22px; height: 22px; cursor: pointer; }
+.sig i { position: absolute; inset: 0; border-radius: 9999px; border: 2px solid var(--sig, #f87171); animation: ping2 2.2s cubic-bezier(0,0,.2,1) infinite; }
+.sig i:nth-child(2) { animation-delay: .7s; }
+.sig b { position: absolute; inset: 6px; border-radius: 9999px; background: var(--sig, #f87171); box-shadow: 0 0 0 2px rgb(255 255 255 / .85), 0 0 14px var(--sig, #f87171); }
+.sig.quiet i { animation: none; opacity: .0; }
+.sig.sel b { box-shadow: 0 0 0 3px #fff, 0 0 22px var(--sig, #f87171); transform: scale(1.25); }
+.acc-ring { border-radius: 9999px; border: 1.5px dashed rgb(var(--info) / .8); background: rgb(var(--info) / .12); }
+.mapboxgl-ctrl-group { border-radius: 14px !important; overflow: hidden; box-shadow: 0 6px 20px -8px rgb(0 0 0 / .35) !important; }
+.mapboxgl-popup-content { border-radius: 16px !important; padding: 0 !important; box-shadow: 0 18px 40px -16px rgb(0 0 0 / .45) !important; }
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .75; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .tac-sweep { display: none; }
+}
+@media print {
+  .no-print { display: none !important; }
+  /* Printing the emergency QR page: show only the code card, large and black on white */
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none !important; border: 0 !important; background: #fff !important; color: #000 !important; }
+  .print-area .qr-tile { width: 12cm !important; height: 12cm !important; box-shadow: none !important; }
+  .print-area .print-text { background: #fff !important; color: #000 !important; font-size: 12pt; }
+}
+
+/* ---- Emergency push-button (home page): metal bezel + glossy red dome. Change --ebtn-1/2/3 to recolour. ---- */
+.ebtn { box-sizing: border-box; --ebtn-1: #ff5a50; --ebtn-2: #d4161e; --ebtn-3: #8c0a12; position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; padding: 7%; min-height: 0; border-radius: 9999px; color: #fff; text-decoration: none; isolation: isolate; -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(145deg, #f7f8fa 0%, #c5c9cf 36%, #878c95 64%, #eceef1 100%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / .30), inset 0 2px 0 rgb(255 255 255 / .75), inset 0 -4px 8px rgb(0 0 0 / .28);
+  transition: transform .12s ease, box-shadow .12s ease; }
+.ebtn-lg { width: min(66vw, 15.5rem); }
+.ebtn-sm { width: min(41vw, 11rem); }
+.ebtn-face { box-sizing: border-box; position: relative; display: flex; width: 100%; aspect-ratio: 1 / 1; flex-direction: column; align-items: center; justify-content: center; gap: .3em; padding: 11%; overflow: hidden; border-radius: 9999px; text-align: center;
+  background: radial-gradient(120% 120% at 30% 20%, var(--ebtn-1) 0%, var(--ebtn-2) 50%, var(--ebtn-3) 100%);
+  box-shadow: inset 0 -12px 20px rgb(0 0 0 / .30), inset 0 5px 9px rgb(255 255 255 / .22), 0 0 0 2px rgb(0 0 0 / .20); transition: box-shadow .12s ease; }
+.ebtn-face::before { content: ""; position: absolute; left: 15%; right: 15%; top: 4%; height: 36%; border-radius: 50% 50% 60% 60% / 85% 85% 40% 40%; background: linear-gradient(to bottom, rgb(255 255 255 / .55), rgb(255 255 255 / 0)); pointer-events: none; }
+.ebtn-text { position: relative; font-weight: 800; line-height: 1.15; letter-spacing: .01em; text-wrap: balance; text-shadow: 0 1px 2px rgb(0 0 0 / .5); }
+.ebtn-lg .ebtn-text { font-size: clamp(1.05rem, 4.4vw, 1.5rem); }
+.ebtn-sm .ebtn-text { font-size: clamp(.78rem, 3.2vw, 1rem); }
+.ebtn:hover .ebtn-face { filter: brightness(1.06); }
+.ebtn:active { transform: translateY(3px) scale(.985); box-shadow: 0 5px 10px rgb(0 0 0 / .30), inset 0 2px 0 rgb(255 255 255 / .6), inset 0 -2px 6px rgb(0 0 0 / .3); }
+.ebtn:active .ebtn-face { box-shadow: inset 0 10px 18px rgb(0 0 0 / .42), inset 0 -2px 4px rgb(255 255 255 / .15), 0 0 0 2px rgb(0 0 0 / .25); }
+.ebtn:focus-visible { outline: 4px solid rgb(var(--info, 56 88 206)); outline-offset: 5px; }
+@media (prefers-reduced-motion: reduce) { .ebtn, .ebtn-face { transition: none; } .ebtn:active { transform: none; } }

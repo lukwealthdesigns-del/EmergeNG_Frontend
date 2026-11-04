@@ -1,0 +1,2 @@
+import { ShieldOff } from "lucide-react"; import SystemPage from "./SystemPage"; import { Button } from "../../components/ui"; import { useI18n } from "../../i18n";
+export default function Forbidden() { const { t } = useI18n(); return <SystemPage icon={ShieldOff} title={t("sys.403.title")} body={t("sys.403.body")} tone="bg-warn-soft text-warn"><Button to="/">{t("sys.home")}</Button></SystemPage>; }

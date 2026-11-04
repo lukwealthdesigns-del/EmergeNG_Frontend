@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /operations
+Disallow: /partner
+Disallow: /admin
+Disallow: /app
+Disallow: /track

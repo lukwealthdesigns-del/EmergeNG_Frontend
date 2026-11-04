@@ -1,0 +1,2 @@
+import { ServerCrash } from "lucide-react"; import SystemPage from "./SystemPage"; import { Button } from "../../components/ui"; import { useI18n } from "../../i18n";
+export default function ServerError() { const { t } = useI18n(); return <SystemPage icon={ServerCrash} title={t("sys.500.title")} body={t("sys.500.body")} tone="bg-danger-soft text-danger"><Button onClick={() => location.reload()}>{t("sys.reload")}</Button><Button variant="outline" to="/">{t("sys.home")}</Button></SystemPage>; }

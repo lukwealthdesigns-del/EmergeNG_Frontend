@@ -1,0 +1,2 @@
+import { WifiOff } from "lucide-react"; import SystemPage from "./SystemPage"; import { Button } from "../../components/ui"; import { useI18n } from "../../i18n";
+export default function OfflinePage() { const { t } = useI18n(); return <SystemPage icon={WifiOff} title={t("sys.offline.title")} body={t("sys.offline.body")} tone="bg-warn-soft text-warn"><Button to="/offline">{t("off.mode_title")}</Button><Button variant="outline" to="/report">{t("off.create")}</Button></SystemPage>; }

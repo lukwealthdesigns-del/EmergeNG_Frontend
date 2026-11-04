@@ -1,0 +1,1776 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/settings/verification",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/settings/verification",
+  "query": {},
+  "body": {
+   "model": "VerificationSettingsIn",
+   "fields": {
+    "require_email_verification": false,
+    "require_phone_verification": false,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/settings",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/settings/{key}",
+  "query": {},
+  "body": {
+   "model": "ConfigSetIn",
+   "fields": {
+    "value": true,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/users",
+  "query": {
+   "q": false,
+   "status": false,
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/users/{user_id}",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/users/{user_id}/status",
+  "query": {},
+  "body": {
+   "model": "UserStatusIn",
+   "fields": {
+    "status": true,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/users/{user_id}/force-logout",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/users/{user_id}/mark-email-verified",
+  "query": {},
+  "body": {
+   "model": "ReasonIn",
+   "fields": {
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/roles",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/users/{user_id}/roles",
+  "query": {},
+  "body": {
+   "model": "RoleGrantIn",
+   "fields": {
+    "role_code": true,
+    "reason": true,
+    "states": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/admin/users/{user_id}/roles/{role_code}",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/approvals",
+  "query": {
+   "status": false
+  },
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/approvals/{approval_id}/decision",
+  "query": {},
+  "body": {
+   "model": "ApprovalDecisionIn",
+   "fields": {
+    "approve": true,
+    "note": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/audit-events",
+  "query": {
+   "category": false,
+   "action": false,
+   "actor_user_id": false,
+   "resource_id": false,
+   "since": false,
+   "until": false,
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/security-events",
+  "query": {
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/audit-events/verify",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/system/health",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/system/readiness",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/integrations",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/integrations/{provider}/enabled",
+  "query": {},
+  "body": {
+   "model": "IntegrationToggleIn",
+   "fields": {
+    "enabled": true,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/integrations/{provider}/reset-circuit",
+  "query": {},
+  "body": {
+   "model": "ReasonIn",
+   "fields": {
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/integrations/{provider}/test",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/partners",
+  "query": {},
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/partners",
+  "query": {},
+  "body": {
+   "model": "PartnerOrgIn",
+   "fields": {
+    "name": true,
+    "org_type": true,
+    "integration_mode": false,
+    "service_states": false,
+    "categories": false,
+    "contact": false,
+    "escalation": false,
+    "operating_hours": false,
+    "agreement_ref": false,
+    "ack_timeout_minutes": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "PATCH",
+  "path": "/api/v1/admin/partners/{org_id}",
+  "query": {},
+  "body": {
+   "model": "PartnerOrgPatch",
+   "fields": {
+    "integration_mode": false,
+    "service_states": false,
+    "categories": false,
+    "contact": false,
+    "escalation": false,
+    "operating_hours": false,
+    "agreement_ref": false,
+    "ack_timeout_minutes": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/partners/{org_id}/status",
+  "query": {},
+  "body": {
+   "model": "PartnerStatusIn",
+   "fields": {
+    "status": true,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/partners/{org_id}/enable-live",
+  "query": {},
+  "body": {
+   "model": "ConfigSetIn",
+   "fields": {
+    "value": true,
+    "reason": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/partners/{org_id}/members",
+  "query": {},
+  "body": {
+   "model": "MemberIn",
+   "fields": {
+    "email": true,
+    "org_role": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/facilities",
+  "query": {},
+  "body": {
+   "model": "FacilityIn",
+   "fields": {
+    "name": true,
+    "category": true,
+    "latitude": true,
+    "longitude": true,
+    "address": false,
+    "state_code": false,
+    "postcode": false,
+    "phone": false,
+    "source": false,
+    "source_ref": false,
+    "verified": false,
+    "services": false,
+    "operating_hours": false,
+    "hours_verified": false,
+    "is_active": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/admin/facilities/{facility_id}",
+  "query": {},
+  "body": {
+   "model": "FacilityIn",
+   "fields": {
+    "name": true,
+    "category": true,
+    "latitude": true,
+    "longitude": true,
+    "address": false,
+    "state_code": false,
+    "postcode": false,
+    "phone": false,
+    "source": false,
+    "source_ref": false,
+    "verified": false,
+    "services": false,
+    "operating_hours": false,
+    "hours_verified": false,
+    "is_active": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/admin/privacy/requests",
+  "query": {
+   "status": false
+  },
+  "body": null,
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/privacy/requests/{request_id}/fulfil",
+  "query": {},
+  "body": {
+   "model": "PrivacyFulfilIn",
+   "fields": {
+    "note": false
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/admin/privacy/requests/{request_id}/reject",
+  "query": {},
+  "body": {
+   "model": "AlertResolveIn",
+   "fields": {
+    "notes": true
+   }
+  },
+  "file": "admin.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/auth/config",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/register",
+  "query": {},
+  "body": {
+   "model": "RegisterIn",
+   "fields": {
+    "email": true,
+    "password": true,
+    "full_name": false,
+    "phone": false
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/login",
+  "query": {},
+  "body": {
+   "model": "LoginIn",
+   "fields": {
+    "email": true,
+    "password": true,
+    "mfa_code": false
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/google",
+  "query": {},
+  "body": {
+   "model": "GoogleLoginIn",
+   "fields": {
+    "id_token": true,
+    "mfa_code": false
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/refresh",
+  "query": {},
+  "body": {
+   "model": "RefreshIn",
+   "fields": {
+    "refresh_token": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/logout",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/logout-all",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/verify-email/request",
+  "query": {},
+  "body": {
+   "model": "EmailOtpRequestIn",
+   "fields": {
+    "email": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/verify-email",
+  "query": {},
+  "body": {
+   "model": "VerifyEmailIn",
+   "fields": {
+    "email": true,
+    "code": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/password/forgot",
+  "query": {},
+  "body": {
+   "model": "EmailOtpRequestIn",
+   "fields": {
+    "email": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/password/reset",
+  "query": {},
+  "body": {
+   "model": "ResetPasswordIn",
+   "fields": {
+    "email": true,
+    "code": true,
+    "new_password": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/password/change",
+  "query": {},
+  "body": {
+   "model": "ChangePasswordIn",
+   "fields": {
+    "current_password": true,
+    "new_password": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/phone/request",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/phone/verify",
+  "query": {},
+  "body": {
+   "model": "CodeIn",
+   "fields": {
+    "code": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/mfa/enroll",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/mfa/confirm",
+  "query": {},
+  "body": {
+   "model": "CodeIn",
+   "fields": {
+    "code": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/mfa/disable",
+  "query": {},
+  "body": {
+   "model": "MfaDisableIn",
+   "fields": {
+    "password": true,
+    "code": true
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/auth/reauth",
+  "query": {},
+  "body": {
+   "model": "ReauthIn",
+   "fields": {
+    "password": true,
+    "mfa_code": false
+   }
+  },
+  "file": "auth.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/auth/sessions",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/auth/sessions/{session_id}",
+  "query": {},
+  "body": null,
+  "file": "auth.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/emergency-profile",
+  "query": {},
+  "body": null,
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/emergency-profile",
+  "query": {},
+  "body": {
+   "model": "EmergencyProfileIn",
+   "fields": {
+    "date_of_birth": false,
+    "preferred_language": false,
+    "preferred_hospital": false,
+    "sharing_preferences": false
+   }
+  },
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/emergency-profile/medical",
+  "query": {},
+  "body": null,
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/emergency-profile/medical",
+  "query": {},
+  "body": {
+   "model": "MedicalIn",
+   "fields": {
+    "blood_group": false,
+    "allergies": false,
+    "conditions": false,
+    "medications": false,
+    "disability_needs": false,
+    "emergency_notes": false
+   }
+  },
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/emergency-profile/medical",
+  "query": {},
+  "body": null,
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/consents",
+  "query": {},
+  "body": null,
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/consents",
+  "query": {},
+  "body": {
+   "model": "ConsentIn",
+   "fields": {
+    "purpose": true,
+    "granted": true,
+    "policy_version": true
+   }
+  },
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/consents/{consent_id}",
+  "query": {},
+  "body": null,
+  "file": "emergency_profiles.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/incidents",
+  "query": {},
+  "body": {
+   "model": "IncidentCreateIn",
+   "fields": {
+    "category": true,
+    "subcategory": false,
+    "description": false,
+    "reported_severity": false,
+    "latitude": true,
+    "longitude": true,
+    "accuracy_m": false,
+    "location_source": false,
+    "captured_at": false,
+    "client_submitted_at": false,
+    "address_text": false,
+    "user_reported_postcode": false,
+    "manually_corrected": false,
+    "reporter_name": false,
+    "callback_phone": false,
+    "callback_email": false,
+    "share_medical_fields": false,
+    "notify_contact_ids": false,
+    "email_receipt": false,
+    "source_channel": false
+   }
+  },
+  "file": "incidents.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/incidents/mine",
+  "query": {
+   "page": false,
+   "page_size": false
+  },
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/incidents/{incident_id}",
+  "query": {},
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/incidents/{incident_id}/timeline",
+  "query": {},
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/incidents/{incident_id}/cancel",
+  "query": {},
+  "body": {
+   "model": "CancelIn",
+   "fields": {
+    "reason": false
+   }
+  },
+  "file": "incidents.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/incidents/{incident_id}/share",
+  "query": {},
+  "body": {
+   "model": "ShareLinkIn",
+   "fields": {
+    "incident_id": false,
+    "latitude": false,
+    "longitude": false,
+    "accuracy_m": false,
+    "address_text": false,
+    "postcode": false,
+    "message": false,
+    "include_name": false,
+    "include_callback": false,
+    "medical_fields": false,
+    "ttl_minutes": false
+   }
+  },
+  "file": "incidents.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/incidents/{incident_id}/notify-contacts",
+  "query": {},
+  "body": {
+   "model": "NotifyContactsIn",
+   "fields": {
+    "incident_id": false,
+    "latitude": false,
+    "longitude": false,
+    "accuracy_m": false,
+    "address_text": false,
+    "contact_ids": true,
+    "medical_fields": false,
+    "message": false
+   }
+  },
+  "file": "incidents.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/incidents/{incident_id}/media",
+  "query": {},
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/incidents/media/{media_id}/url",
+  "query": {},
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/incidents/media/{media_id}",
+  "query": {},
+  "body": null,
+  "file": "incidents.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/location/reverse",
+  "query": {
+   "body": true
+  },
+  "body": null,
+  "file": "locations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/location/postcode/resolve",
+  "query": {
+   "body": true
+  },
+  "body": null,
+  "file": "locations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/location/places/search",
+  "query": {
+   "q": false,
+   "lat": false,
+   "lon": false
+  },
+  "body": null,
+  "file": "locations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/facilities/nearby",
+  "query": {
+   "lat": false,
+   "lon": false,
+   "radius_m": false,
+   "categories": false,
+   "limit": false,
+   "include_third_party": false
+  },
+  "body": null,
+  "file": "locations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/facilities/{facility_id}",
+  "query": {},
+  "body": null,
+  "file": "locations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/offline/config",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/offline/sync-session",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/offline/sync",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/offline/sync/status",
+  "query": {
+   "ids": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/offline/sync/changes",
+  "query": {
+   "cursor": false,
+   "limit": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/offline/emergency-card",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/offline/medical-snapshot",
+  "query": {
+   "fields": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/offline/incidents/{incident_id}/media/{client_media_id}",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/offline/failures",
+  "query": {
+   "limit": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/offline/metrics",
+  "query": {
+   "since_hours": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/i18n/languages",
+  "query": {},
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/i18n/catalog",
+  "query": {
+   "lang": false
+  },
+  "body": null,
+  "file": "offline.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/overview",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/incidents",
+  "query": {
+   "status": false,
+   "priority": false,
+   "category": false,
+   "verification": false,
+   "state": false,
+   "q": false,
+   "owner": false,
+   "since": false,
+   "until": false,
+   "sort": false,
+   "page": false,
+   "page_size": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/incidents/{incident_id}",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/incidents/{incident_id}/reporter-contact",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/incidents/{incident_id}/medical",
+  "query": {
+   "reason": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/receive",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/transition",
+  "query": {},
+  "body": {
+   "model": "TransitionIn",
+   "fields": {
+    "to_status": true,
+    "reason": false,
+    "evidence": false,
+    "expected_version": false,
+    "closure_reason": false,
+    "closure_note": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/reopen",
+  "query": {},
+  "body": {
+   "model": "ReopenIn",
+   "fields": {
+    "reason": true,
+    "expected_version": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/verification",
+  "query": {},
+  "body": {
+   "model": "VerificationIn",
+   "fields": {
+    "to": true,
+    "reason": false,
+    "evidence": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/priority",
+  "query": {},
+  "body": {
+   "model": "PriorityIn",
+   "fields": {
+    "priority": true,
+    "reason": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/assign",
+  "query": {},
+  "body": {
+   "model": "AssignIn",
+   "fields": {
+    "assignee_user_id": false,
+    "team": false,
+    "reason": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/notes",
+  "query": {},
+  "body": {
+   "model": "NoteIn",
+   "fields": {
+    "body": true,
+    "visibility": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/escalate",
+  "query": {},
+  "body": {
+   "model": "ReasonIn",
+   "fields": {
+    "reason": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/flag-abuse",
+  "query": {},
+  "body": {
+   "model": "ReasonIn",
+   "fields": {
+    "reason": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/incidents/{incident_id}/referrals",
+  "query": {},
+  "body": {
+   "model": "ReferralCreateIn",
+   "fields": {
+    "org_id": true,
+    "note": false,
+    "share_description": false,
+    "share_reporter_contact": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/referrals/{referral_id}/record-response",
+  "query": {},
+  "body": {
+   "model": "ReferralRecordIn",
+   "fields": {
+    "status": true,
+    "evidence": true,
+    "note": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/map",
+  "query": {
+   "min_lat": false,
+   "min_lon": false,
+   "max_lat": false,
+   "max_lon": false,
+   "status": false,
+   "priority": false,
+   "category": false,
+   "since_hours": false,
+   "include_closed": false,
+   "limit": false,
+   "cluster_cell_deg": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/analytics",
+  "query": {
+   "since": false,
+   "until": false,
+   "granularity": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/analytics/geographic",
+  "query": {
+   "since": false,
+   "until": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/updates",
+  "query": {
+   "since": true
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/stream-ticket",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/stream",
+  "query": {
+   "ticket": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/abuse",
+  "query": {
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/abuse/signals/{signal_id}/review",
+  "query": {},
+  "body": {
+   "model": "AbuseReviewIn",
+   "fields": {
+    "outcome": true,
+    "reason_code": false,
+    "notes": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/abuse/duplicates/{dup_id}/review",
+  "query": {},
+  "body": {
+   "model": "DuplicateReviewIn",
+   "fields": {
+    "status": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/notifications",
+  "query": {
+   "status": false,
+   "incident_id": false,
+   "limit": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/notifications/{job_id}/retry",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/alerts",
+  "query": {
+   "state": false
+  },
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/alerts/{alert_id}/acknowledge",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/alerts/{alert_id}/resolve",
+  "query": {},
+  "body": {
+   "model": "ReasonIn",
+   "fields": {
+    "reason": true
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/operations/exports",
+  "query": {},
+  "body": {
+   "model": "ExportIn",
+   "fields": {
+    "since": true,
+    "until": true,
+    "status": false,
+    "category": false,
+    "include_pii": false,
+    "reason": true,
+    "approval_id": false
+   }
+  },
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/operations/exports/{export_id}/download",
+  "query": {},
+  "body": null,
+  "file": "operations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/partners/me/referrals",
+  "query": {
+   "status": false,
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "partners.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/partners/me/referrals/{referral_id}",
+  "query": {},
+  "body": null,
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/acknowledge",
+  "query": {},
+  "body": {
+   "model": "PartnerActionIn",
+   "fields": {
+    "note": false,
+    "stage": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/accept",
+  "query": {},
+  "body": {
+   "model": "PartnerActionIn",
+   "fields": {
+    "note": false,
+    "stage": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/reject",
+  "query": {},
+  "body": {
+   "model": "PartnerActionIn",
+   "fields": {
+    "note": false,
+    "stage": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/status",
+  "query": {},
+  "body": {
+   "model": "PartnerActionIn",
+   "fields": {
+    "note": false,
+    "stage": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/resolve",
+  "query": {},
+  "body": {
+   "model": "PartnerActionIn",
+   "fields": {
+    "note": false,
+    "stage": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/referrals/{referral_id}/notes",
+  "query": {},
+  "body": {
+   "model": "PartnerNoteIn",
+   "fields": {
+    "body": true
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/partners/me/audit",
+  "query": {
+   "limit": false
+  },
+  "body": null,
+  "file": "partners.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/partners/me/members",
+  "query": {},
+  "body": null,
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/partners/me/members",
+  "query": {},
+  "body": {
+   "model": "MemberIn",
+   "fields": {
+    "email": true,
+    "org_role": false
+   }
+  },
+  "file": "partners.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/partners/me/members/{user_id}",
+  "query": {},
+  "body": null,
+  "file": "partners.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/privacy/requests",
+  "query": {},
+  "body": {
+   "model": "PrivacyRequestIn",
+   "fields": {
+    "request_type": true,
+    "details": false
+   }
+  },
+  "file": "privacy.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/privacy/requests",
+  "query": {},
+  "body": null,
+  "file": "privacy.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/privacy/requests/{request_id}",
+  "query": {},
+  "body": null,
+  "file": "privacy.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/public/track/{reference}",
+  "query": {},
+  "body": null,
+  "file": "public.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/public/shared/{token}",
+  "query": {},
+  "body": null,
+  "file": "public.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/location/share",
+  "query": {},
+  "body": {
+   "model": "ShareLinkIn",
+   "fields": {
+    "incident_id": false,
+    "latitude": false,
+    "longitude": false,
+    "accuracy_m": false,
+    "address_text": false,
+    "postcode": false,
+    "message": false,
+    "include_name": false,
+    "include_callback": false,
+    "medical_fields": false,
+    "ttl_minutes": false
+   }
+  },
+  "file": "public.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/location/share",
+  "query": {},
+  "body": null,
+  "file": "public.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/location/share/{link_id}",
+  "query": {},
+  "body": null,
+  "file": "public.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/saved-locations",
+  "query": {},
+  "body": null,
+  "file": "saved_locations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/saved-locations",
+  "query": {},
+  "body": {
+   "model": "SavedLocationIn",
+   "fields": {
+    "label_type": true,
+    "label": true,
+    "address_text": false,
+    "latitude": true,
+    "longitude": true,
+    "postcode": false
+   }
+  },
+  "file": "saved_locations.py"
+ },
+ {
+  "method": "PATCH",
+  "path": "/api/v1/saved-locations/{location_id}",
+  "query": {},
+  "body": {
+   "model": "SavedLocationPatch",
+   "fields": {
+    "label_type": false,
+    "label": false,
+    "address_text": false,
+    "latitude": false,
+    "longitude": false,
+    "postcode": false
+   }
+  },
+  "file": "saved_locations.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/saved-locations/{location_id}/confirm",
+  "query": {},
+  "body": null,
+  "file": "saved_locations.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/saved-locations/{location_id}",
+  "query": {},
+  "body": null,
+  "file": "saved_locations.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/trusted-contacts",
+  "query": {},
+  "body": null,
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/trusted-contacts",
+  "query": {},
+  "body": {
+   "model": "ContactIn",
+   "fields": {
+    "name": true,
+    "relationship": false,
+    "phone": false,
+    "email": false,
+    "channel_pref": false,
+    "share_location": false,
+    "share_medical": false,
+    "notify_on_incident": false
+   }
+  },
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "PATCH",
+  "path": "/api/v1/trusted-contacts/{contact_id}",
+  "query": {},
+  "body": {
+   "model": "ContactPatch",
+   "fields": {
+    "name": false,
+    "relationship": false,
+    "phone": false,
+    "email": false,
+    "channel_pref": false,
+    "share_location": false,
+    "share_medical": false,
+    "notify_on_incident": false
+   }
+  },
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/trusted-contacts/{contact_id}",
+  "query": {},
+  "body": null,
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/trusted-contacts/{contact_id}/verify/request",
+  "query": {},
+  "body": null,
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/trusted-contacts/{contact_id}/verify/confirm",
+  "query": {},
+  "body": {
+   "model": "CodeIn",
+   "fields": {
+    "code": true
+   }
+  },
+  "file": "trusted_contacts.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/users/me",
+  "query": {},
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "PATCH",
+  "path": "/api/v1/users/me",
+  "query": {},
+  "body": {
+   "model": "AccountUpdateIn",
+   "fields": {
+    "full_name": false,
+    "phone": false,
+    "preferred_language": false,
+    "notification_prefs": false
+   }
+  },
+  "file": "users.py"
+ },
+ {
+  "method": "PUT",
+  "path": "/api/v1/users/me/notification-preferences",
+  "query": {},
+  "body": {
+   "model": "NotificationPrefsIn",
+   "fields": {
+    "prefs": true
+   }
+  },
+  "file": "users.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/users/me/deactivate",
+  "query": {},
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "GET",
+  "path": "/api/v1/users/me/notifications",
+  "query": {
+   "unread_only": false,
+   "limit": false,
+   "offset": false
+  },
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/users/me/notifications/read-all",
+  "query": {},
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/users/me/notifications/{notification_id}/read",
+  "query": {},
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "DELETE",
+  "path": "/api/v1/users/me/notifications/{notification_id}",
+  "query": {},
+  "body": null,
+  "file": "users.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/webhooks/brevo",
+  "query": {},
+  "body": null,
+  "file": "webhooks.py"
+ },
+ {
+  "method": "POST",
+  "path": "/api/v1/webhooks/cloudinary",
+  "query": {},
+  "body": null,
+  "file": "webhooks.py"
+ },
+ {
+  "method": "GET",
+  "path": "/health/live",
+  "query": {},
+  "body": null,
+  "file": "main.py"
+ },
+ {
+  "method": "GET",
+  "path": "/health/ready",
+  "query": {},
+  "body": null,
+  "file": "main.py"
+ }
+]
