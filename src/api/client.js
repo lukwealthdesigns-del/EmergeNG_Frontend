@@ -4,7 +4,10 @@ import { currentLang } from "../i18n";
 import { uuid, sleep } from "../lib/utils";
 
 const RAW_BASE = import.meta.env?.VITE_API_BASE_URL || "http://localhost:8000/api/v1";
-export const API_BASE = RAW_BASE.replace(/\/+$/, "");
+// The backend serves everything under /api/v1. A base URL that is only a host (e.g. https://my-api.onrender.com) is a common
+// deployment mistake that makes every call 404, so the prefix is added when no path was given.
+const withPrefix = (b) => { try { const u = new URL(b); if (u.pathname === "/" || u.pathname === "") { if (import.meta.env?.DEV) console.warn("[api] VITE_API_BASE_URL has no path; using", b + "/api/v1"); return b + "/api/v1"; } } catch { /* keep as is */ } return b; };
+export const API_BASE = withPrefix(RAW_BASE.replace(/\/+$/, ""));
 export const API_ORIGIN = (() => { try { return new URL(API_BASE).origin; } catch { return ""; } })();
 
 // ---- token state (access token lives in memory only) ----

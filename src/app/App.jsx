@@ -31,16 +31,23 @@ function Boot({ children }) {
   return children;
 }
 
+/** Decides home vs. welcome each time the "/" route renders. (It used to be read once in Routing(), which does not re-render
+ *  after Onboarding saves the flag, so Skip / Continue bounced back to /welcome.) */
+function HomeGate() {
+  return ls.get(ONBOARDED_KEY) === "1"
+    ? <Suspense fallback={<PageFallback />}><P.Home /></Suspense>
+    : <Navigate to="/welcome" replace />;
+}
+
 function Routing() {
   const { t } = useI18n();
-  const onboarded = ls.get(ONBOARDED_KEY) === "1";
   const S = (el) => <Suspense fallback={<PageFallback />}>{el}</Suspense>;
   return (
     <ErrorBoundary t={t}>
       <Routes>
         <Route path="/welcome" element={<PlainShell />}><Route index element={S(<P.Onboarding />)} /></Route>
         <Route element={<MainShell />}>
-          <Route index element={onboarded ? S(<P.Home />) : <Navigate to="/welcome" replace />} />
+          <Route index element={<HomeGate />} />
           <Route path="location" element={S(<P.ShareLocation />)} />
           <Route path="nearby" element={S(<P.NearbyHelp />)} />
           <Route path="report" element={S(<P.Report />)} />

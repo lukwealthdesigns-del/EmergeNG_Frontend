@@ -1,5 +1,5 @@
 /* EmergeNG service worker — app shell + static assets only. Never touches /api or any cross-origin API traffic. */
-const VERSION = "v1";
+const VERSION = "v2";
 const SHELL = `emergeng-shell-${VERSION}`;
 const ASSETS = `emergeng-assets-${VERSION}`;
 const SHELL_URLS = ["/", "/index.html", "/manifest.webmanifest", "/favicon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
@@ -33,17 +33,17 @@ self.addEventListener("fetch", (e) => {
   }
   // Hashed build assets: cache-first (immutable). Other static files: stale-while-revalidate.
   if (url.pathname.startsWith("/assets/")) {
-    e.respondWith(caches.open(ASSETS).then(async (c) => {
-      const hit = await c.match(req); if (hit) return hit;
-      const res = await fetch(req); if (res.ok) c.put(req, res.clone()); return res;
-    }));
+    e.respondWith((async () => {
+      const c = await caches.open(ASSETS); const hit = await c.match(req); if (hit) return hit;
+      try { const res = await fetch(req); if (res.ok) c.put(req, res.clone()).catch(() => {}); return res; } catch { return Response.error(); }
+    })());
     return;
   }
-  e.respondWith(caches.open(SHELL).then(async (c) => {
-    const hit = await c.match(req);
-    const net = fetch(req).then((res) => { if (res.ok) c.put(req, res.clone()); return res; }).catch(() => hit);
-    return hit || net;
-  }));
+  e.respondWith((async () => {
+    const c = await caches.open(SHELL); const hit = await c.match(req);
+    const net = fetch(req).then((res) => { if (res.ok) c.put(req, res.clone()).catch(() => {}); return res; }).catch(() => null);
+    return hit || (await net) || Response.error(); // never resolve with undefined: that raised "Failed to convert value to 'Response'"
+  })());
 });
 
 // Background Sync (Chromium): ask an open page to run the sync manager (it owns auth tokens, which the SW must not hold).
